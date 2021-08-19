@@ -1,0 +1,30 @@
+digraph "Clustered Web Services" {
+	graph [fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label="Clustered Web Services" nodesep=0.60 pad=2.0 rankdir=LR ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	"90eb8b6d300a4e43bf0a73594605914f" [label=dns height=1.9 image="C:\Users\amilt\AppData\Local\Programs\Python\Python39\lib\site-packages\resources/aws/network\route-53.png" shape=none]
+	a9a22d3b9ae34a63a3c8a5e6badf1277 [label=lb height=1.9 image="C:\Users\amilt\AppData\Local\Programs\Python\Python39\lib\site-packages\resources/aws/network\elastic-load-balancing.png" shape=none]
+	subgraph cluster_Services {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label=Services labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"635be4aa65424776a27e4d3dcb05625c" [label=web1 height=1.9 image="C:\Users\amilt\AppData\Local\Programs\Python\Python39\lib\site-packages\resources/aws/compute\elastic-container-service.png" shape=none]
+		"2ad56c15147d43aab601df357f0eff49" [label=web2 height=1.9 image="C:\Users\amilt\AppData\Local\Programs\Python\Python39\lib\site-packages\resources/aws/compute\elastic-container-service.png" shape=none]
+		"0b75005dc9c2461da964bca7547cc9e4" [label=web3 height=1.9 image="C:\Users\amilt\AppData\Local\Programs\Python\Python39\lib\site-packages\resources/aws/compute\elastic-container-service.png" shape=none]
+	}
+	"93ab85a0627a4c088045d4b15a4e3a38" -> "3216d43d1caf489cb9cc98ad6dd4bec8" [dir=none fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	subgraph "cluster_DB Cluster" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="DB Cluster" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"93ab85a0627a4c088045d4b15a4e3a38" [label=userdb height=1.9 image="C:\Users\amilt\AppData\Local\Programs\Python\Python39\lib\site-packages\resources/aws/database\rds.png" shape=none]
+		"3216d43d1caf489cb9cc98ad6dd4bec8" [label="userdb ro" height=1.9 image="C:\Users\amilt\AppData\Local\Programs\Python\Python39\lib\site-packages\resources/aws/database\rds.png" shape=none]
+	}
+	d3fb73e1e78d45bc95fa55b093c89e77 [label=memcached height=1.9 image="C:\Users\amilt\AppData\Local\Programs\Python\Python39\lib\site-packages\resources/aws/database\elasticache.png" shape=none]
+	"90eb8b6d300a4e43bf0a73594605914f" -> a9a22d3b9ae34a63a3c8a5e6badf1277 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	a9a22d3b9ae34a63a3c8a5e6badf1277 -> "635be4aa65424776a27e4d3dcb05625c" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	a9a22d3b9ae34a63a3c8a5e6badf1277 -> "2ad56c15147d43aab601df357f0eff49" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	a9a22d3b9ae34a63a3c8a5e6badf1277 -> "0b75005dc9c2461da964bca7547cc9e4" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"635be4aa65424776a27e4d3dcb05625c" -> "93ab85a0627a4c088045d4b15a4e3a38" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"2ad56c15147d43aab601df357f0eff49" -> "93ab85a0627a4c088045d4b15a4e3a38" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"0b75005dc9c2461da964bca7547cc9e4" -> "93ab85a0627a4c088045d4b15a4e3a38" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"635be4aa65424776a27e4d3dcb05625c" -> d3fb73e1e78d45bc95fa55b093c89e77 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"2ad56c15147d43aab601df357f0eff49" -> d3fb73e1e78d45bc95fa55b093c89e77 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"0b75005dc9c2461da964bca7547cc9e4" -> d3fb73e1e78d45bc95fa55b093c89e77 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+}
